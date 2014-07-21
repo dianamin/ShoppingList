@@ -1,0 +1,25 @@
+#bg {
+    width: 500px;
+    height: 640px;
+    padding-top: 100px;
+}
+
+#list {
+    height: 540px;
+    overflow: auto;
+    font-family: "lucida sans unicode";
+    color: #357ebd;
+    font-size: 20px;
+    text-align: justify;
+}
+
+#product {
+    width: 200px;
+}
+#quantity {
+    width: 150px;
+}
+#qValue {
+    color: #357ebd;
+    display: inline-block;
+}
