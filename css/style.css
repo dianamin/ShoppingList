@@ -1,5 +1,5 @@
 #bg {
-    width: 500px;
+    width: 400px;
     height: 640px;
     padding-top: 100px;
 }
@@ -9,7 +9,7 @@
     overflow: auto;
     font-family: "lucida sans unicode";
     color: #357ebd;
-    font-size: 20px;
+    font-size: 25px;
     text-align: justify;
 }
 
@@ -23,3 +23,55 @@
     color: #357ebd;
     display: inline-block;
 }
+#options {
+    float: right;
+}
+
+.bought {
+    text-decoration: line-through;
+}
+
+.removed {
+    opacity: 1;
+    animation: disappear 10s;
+    -webkit-animation: disappear 10s;
+    display: none;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes disappear {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+
+/* Standard syntax */
+@keyframes disappear {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+
+.small {
+    overflow: hidden;
+    height: 0px;
+    transition: height 1s;
+}
+
+.big {
+    height: 100;
+    overflow: auto;
+}
+
+#edit {
+    font-size: 15px;
+}
+
+
+#left {
+    margin-left: 100px;
+}
+
+#right {
+    float: right;
+    margin-right: 100px;
+}
+

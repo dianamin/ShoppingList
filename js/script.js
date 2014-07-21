@@ -12,3 +12,8 @@ var add = function() {
     })
     console.log(items);
 }
+
+var edit = function (id) {
+    console.log(id);
+    document.getElementById(id).setAttribute("style", "height: 100px;")
+}
