@@ -23,10 +23,11 @@
 </div>
 
 <button class = "btn btn-primary" onclick = "scale('0')"><span class = "glyphicon glyphicon-plus"></span></button>
-<button class = "btn btn-primary" ng-click = "refresh()"><span class = "glyphicon glyphicon-refresh"></span></button>
-<button class = "btn btn-primary"> <span class = "glyphicon glyphicon-search"></span> </button>
+<button class = "btn btn-primary" ng-click = "refresh()" onclick = "scale('2')"><span class = "glyphicon glyphicon-refresh"></span></button>
+<button class = "btn btn-primary" onclick = "scale('1')"> <span class = "glyphicon glyphicon-search"></span> </button>
+<button class = "btn btn-primary" ng-click = "refresh()" onclick = "scale('3')"><span class = "glyphicon glyphicon-sort"></span></button>
 <div class = "scale" id = "0">
-    <form ng-submit = "addProduct()" id = "left">
+    <form ng-submit = "addProduct()" class = "left">
         <table class = "table table-striped" style = "width: 400px;">
             <thead>
             <th colspan = "3" class = "tab-title"> <span class = "glyphicon glyphicon-plus"></span> Adaugă un produs în listă</th>
@@ -46,14 +47,31 @@
             </tbody>
         </table>
     </form>
-
 </div>
+
+<div class = "scale left" id = "2">
+    <label class = "tab-title"><span class = "glyphicon glyphicon-search"></span> Produsele cumpărate au fost șterse. <br />
+</div>
+
+<div class = "scale left" id = "1">
+    <label class = "tab-title"><span class = "glyphicon glyphicon-search"></span> Caută</label> <br />
+    <input type = "text" ng-model = "query" class = "form-control" style = "width: 200px;"/>
+</div>
+
+<div class = "scale left" id = "3">
+    <label class = "tab-title"><span class = "glyphicon glyphicon-search"></span> Sortează după: </label> <br />
+    <select ng-model="orderProp">
+        <option value="product">Nume</option>
+        <option value="quantity">Cantitate</option>
+    </select>
+</div>
+
 
 <center>
     <div style = 'background: url("img/b.png");' id = "bg">
         <ul id = "list">
 
-            <li ng-repeat="item in items" style = "margin-top: 20px;" ng-class = "{'removed': item.removed}">
+            <li ng-repeat="item in items | filter:query | orderBy:orderProp" style = "margin-top: 20px;" ng-class = "{'removed': item.removed}">
                 <span ng-class = "{'bought': item.bought}">{{item.product}} - {{item.quantity}}</span>
                 <div id = "options">
                     <button class = "btn btn-default" ng-click = "openEdit(item)"><span class = "glyphicon glyphicon-pencil"></span></button>

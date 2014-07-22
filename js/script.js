@@ -18,7 +18,7 @@ var edit = function (id) {
     document.getElementById(id).setAttribute("style", "height: 100px;")
 }
 
-var scaled = [1, 1];
+var scaled = [1, 1, 1, 1, 1];
 
 var scale = function (id) {
     console.log(parseInt(id));
