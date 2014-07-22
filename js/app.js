@@ -10,19 +10,19 @@ var nr = 2;
 var items = [
     {
         "nr" : "1",
-        "editBox": "no",
+        "editBox": false,
         "product" : "Ciocolată",
         "quantity" : "2",
-        "bought" : "no",
-        "removed" : "no"
+        "bought" : false,
+        "removed" : false
     },
     {
         "nr" : "2",
-        "editBox": "no",
+        "editBox": false,
         "product" : "Pizza",
         "quantity" : "1",
-        "bought" : "no",
-        "removed" : "no"
+        "bought" : false,
+        "removed" : false
     }
 ];
 
@@ -40,21 +40,33 @@ app.controller('Items', function($scope){
         })
     };
     $scope.buy = function(item) {
-        item.bought = "yes";
+        item.bought = true;
     };
     $scope.remove = function(item) {
-        item.removed = "yes";
+        item.removed = true;
     };
     $scope.openEdit = function(item) {
-       item.editBox = "yes";
+       item.editBox = true;
        $scope.editItem = item.product;
         console.log(item.product);
         $scope.actualItem = item.nr;
     }
-    $scope.edit = function(item) {
-        item.product = document.getElementById("newName" + item.nr).value;
-        item.quantity = document.getElementById("newQ" + item.nr).value;
-        $scope.editBox = "no";
+    $scope.cancelEdit = function(item) {
         $scope.editItem = "";
+        $scope.editBox = false;
+        $scope.actualItem = "";
+    }
+
+    $scope.edit = function(item) {
+        item.product = item.newName;
+        item.quantity = item.newQ;
+        $scope.editBox = false;
+        $scope.editItem = "";
+        $scope.actualItem = "";
+    }
+    $scope.refresh = function() {
+        for (var i = 0; i < $scope.items.length; i++) {
+            if($scope.items[i].bought == true) $scope.items[i].removed = true;
+        }
     }
 });

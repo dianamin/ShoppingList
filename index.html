@@ -22,45 +22,50 @@
 <div id = "right">
 </div>
 
+<button class = "btn btn-primary" onclick = "scale('0')"><span class = "glyphicon glyphicon-plus"></span></button>
+<button class = "btn btn-primary" ng-click = "refresh()"><span class = "glyphicon glyphicon-refresh"></span></button>
+<button class = "btn btn-primary"> <span class = "glyphicon glyphicon-search"></span> </button>
+<div class = "scale" id = "0">
+    <form ng-submit = "addProduct()" id = "left">
+        <table class = "table table-striped" style = "width: 400px;">
+            <thead>
+            <th colspan = "3" class = "tab-title"> <span class = "glyphicon glyphicon-plus"></span> Adaugă un produs în listă</th>
+            </thead>
+            <tbody>
 
-<form ng-submit = "addProduct()" id = "left">
-    <table class = "table table-striped" style = "width: 400px;">
-        <thead>
-        <th colspan = "3"></th>
-        </thead>
-        <tbody>
-        <tr>
-            <td><label>Adaugă un produs în listă</label></td>
-            <td colspan = "2"><input class = "form-control" type = "text" id = "product"/></td>
-        </tr>
-        <tr>
-            <td><label>Cantitatea</label></td>
-            <td><input type = "range" min = "1" max = "10" id = "quantity" onchange = "changeValue()"/></td><td><p id = "qValue">6</p></td>
-        </tr>
-        </tbody>
-    </table>
-    <input type = "submit" value = "Adaugă în listă"/>
-</form>
+            <tr>
+                <td><label>Numele produsului</label></td>
+                <td colspan = "2"><input class = "form-control" type = "text" id = "product"/></td>
+            </tr>
+            <tr>
+                <td><label>Cantitatea</label></td>
+                <td><input type = "range" min = "1" max = "10" id = "quantity" onchange = "changeValue()"/></td><td><p id = "qValue">6</p></td>
+            </tr>
+            <tr><td colspan = "3"><center><input type = "submit" value = "Adaugă în listă"/> <input type = "button" onclick = "scale(0)" value = "Anulează"/></center></td></tr>
 
+            </tbody>
+        </table>
+    </form>
 
+</div>
 
 <center>
     <div style = 'background: url("img/b.png");' id = "bg">
         <ul id = "list">
 
-            <li ng-repeat="item in items" style = "margin-top: 20px;" ng-class = "{'removed': item.removed == 'yes'}">
-                <span ng-class = "{'bought': item.bought == 'yes'}">{{item.product}} - {{item.quantity}}</span>
+            <li ng-repeat="item in items" style = "margin-top: 20px;" ng-class = "{'removed': item.removed}">
+                <span ng-class = "{'bought': item.bought}">{{item.product}} - {{item.quantity}}</span>
                 <div id = "options">
                     <button class = "btn btn-default" ng-click = "openEdit(item)"><span class = "glyphicon glyphicon-pencil"></span></button>
                     <button class = "btn btn-danger" ng-click = "remove(item)"><span class = "glyphicon glyphicon-remove"></span></button>
                     <button class = "btn btn-success" ng-click = "buy(item)"><span class = "glyphicon glyphicon-ok"></span></button>
                 </div>
 
-                <div id = "edit" ng-class = "{'small': actualItem != item.nr, 'big': item.editBox == 'yes' && actualItem == item.nr}">
+                <div id = "edit" ng-class = "{'small': actualItem != item.nr, 'big': item.editBox && actualItem == item.nr}">
                     <p>Editează produsul {{editItem}}</p>
                     <form ng-submit = "edit(item)">
-                        <input type = "text" class = form-control placeholder = "Numele produsului" id = "'newName' + {{item.nr}}"/> <input type = "text" class = form-control placeholder = "Cantitate" id = "'newQ' + {{item.nr}}"/>
-                        <br /> <input type = "submit" value = "Editează" style = "font-size: 12px; margin-top: -20px;"/>
+                        <input type = "text" class = form-control placeholder = "Numele produsului" ng-model="item.newName"/> <input type = "text" class = form-control placeholder = "Cantitate" ng-model = "item.newQ"  id = "'newQ' + {{item.nr}}"/>
+                        <br /> <input type = "submit" value = "Editează" style = "margin-top: -20px;"/> <input type = "button" value = "Anulează" ng-click = "cancelEdit(item)" />
                     </form>
                 </div>
             </li>
