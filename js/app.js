@@ -40,10 +40,10 @@ app.controller('Items', function($scope){
         })
     };
     $scope.buy = function(item) {
-        item.bought = true;
+        item.bought = !item.bought;
     };
     $scope.remove = function(item) {
-        item.removed = true;
+        $scope.items = $scope.items.splice(parseInt(item.nr), 1);
     };
     $scope.openEdit = function(item) {
        item.editBox = true;
@@ -66,7 +66,9 @@ app.controller('Items', function($scope){
     }
     $scope.refresh = function() {
         for (var i = 0; i < $scope.items.length; i++) {
-            if($scope.items[i].bought == true) $scope.items[i].removed = true;
+            if ($scope.items[i].bought == true)
+               $scope.items = $scope.items.splice(parseInt($scope.items[i].nr), 1);
         }
     }
+    $scope.orderProp = 'nr';
 });
