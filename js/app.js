@@ -14,7 +14,8 @@ var items = [
         "product" : "Ciocolată",
         "quantity" : "2",
         "bought" : false,
-        "removed" : false
+        "removed" : false,
+        "details" : ":)"
     },
     {
         "nr" : "2",
@@ -22,7 +23,8 @@ var items = [
         "product" : "Pizza",
         "quantity" : "1",
         "bought" : false,
-        "removed" : false
+        "removed" : false,
+        "details": ":)"
     }
 ];
 
@@ -38,7 +40,8 @@ app.controller('Items', function($scope){
         $scope.items.push({
             "nr" : String(nr),
             "product": newItem.product,
-            "quantity": newItem.quantity
+            "quantity": newItem.quantity,
+            "details": newItem.details
         })
     };
     $scope.buy = function(item) {

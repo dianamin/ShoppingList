@@ -90,3 +90,7 @@
     transition: height 1s;
     overflow: hidden;
 }
+
+textarea {
+    resize: none;
+}

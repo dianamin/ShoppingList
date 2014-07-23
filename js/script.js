@@ -20,11 +20,11 @@ var edit = function (id) {
 
 var scaled = [1, 1, 1, 1, 1];
 
-var scale = function (id) {
+var scale = function (id, size) {
     console.log(parseInt(id));
     console.log(scaled[parseInt(id)]);
     if (scaled[parseInt(id)] == 1)
-        document.getElementById(id).setAttribute("style", "height: 200px;");
+        document.getElementById(id).setAttribute("style", "height:" + size + "px;");
     else document.getElementById(id).setAttribute("style", "height: 0px;");
     scaled[parseInt(id)] *= (-1);
 };
