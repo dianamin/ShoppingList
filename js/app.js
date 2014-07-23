@@ -26,24 +26,32 @@ var items = [
     }
 ];
 
+
 app.controller('Items', function($scope){
     $scope.items = items;
     $scope.editBox = "no";
     $scope.editItem = "";
     $scope.actualItem = "";
-    $scope.addProduct = function() {
+
+    $scope.addProduct = function(newItem) {
         nr++;
         $scope.items.push({
             "nr" : String(nr),
-            "product": document.getElementById("product").value,
-            "quantity": document.getElementById("quantity").value
+            "product": newItem.product,
+            "quantity": newItem.quantity
         })
     };
     $scope.buy = function(item) {
         item.bought = !item.bought;
     };
     $scope.remove = function(item) {
-        item.removed = true;
+        //item.removed = true;
+        for (var i = 0; i < $scope.items.length; i++) {
+            if ($scope.items[i].nr == item.nr) {
+                $scope.items.splice(i, 1);
+                break;
+            }
+        }
     };
     $scope.openEdit = function(item) {
        item.editBox = true;
@@ -67,9 +75,10 @@ app.controller('Items', function($scope){
     $scope.refresh = function() {
         for (var i = 0; i < $scope.items.length; i++) {
             if ($scope.items[i].bought == true) {
-                $scope.items[i].removed = true;
-                console.log("removed");
-            }
+                console.log(i);
+                $scope.items.splice(i, 1);
+                i--;
+             }
         }
     };
     $scope.orderProp = 'nr';
@@ -77,7 +86,7 @@ app.controller('Items', function($scope){
 app.directive("test", function() {
    return function (scope, element) {
        element.bind("mouseenter", function() {
-           console.log("yay");
+           console.log(":)");
        })
    }
 });
