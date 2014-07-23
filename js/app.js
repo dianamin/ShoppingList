@@ -43,19 +43,19 @@ app.controller('Items', function($scope){
         item.bought = !item.bought;
     };
     $scope.remove = function(item) {
-        $scope.items = $scope.items.splice(parseInt(item.nr), 1);
+        item.removed = true;
     };
     $scope.openEdit = function(item) {
        item.editBox = true;
        $scope.editItem = item.product;
         console.log(item.product);
         $scope.actualItem = item.nr;
-    }
+    };
     $scope.cancelEdit = function(item) {
         $scope.editItem = "";
         $scope.editBox = false;
         $scope.actualItem = "";
-    }
+    };
 
     $scope.edit = function(item) {
         item.product = item.newName;
@@ -63,12 +63,21 @@ app.controller('Items', function($scope){
         $scope.editBox = false;
         $scope.editItem = "";
         $scope.actualItem = "";
-    }
+    };
     $scope.refresh = function() {
         for (var i = 0; i < $scope.items.length; i++) {
-            if ($scope.items[i].bought == true)
-               $scope.items = $scope.items.splice(parseInt($scope.items[i].nr), 1);
+            if ($scope.items[i].bought == true) {
+                $scope.items[i].removed = true;
+                console.log("removed");
+            }
         }
-    }
+    };
     $scope.orderProp = 'nr';
+});
+app.directive("test", function() {
+   return function (scope, element) {
+       element.bind("mouseenter", function() {
+           console.log("yay");
+       })
+   }
 });

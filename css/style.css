@@ -52,12 +52,12 @@
 
 .small {
     overflow: hidden;
-    height: 0px;
+    height: 1px;
     transition: height 1s;
 }
 
 .big {
-    height: 100;
+    height: 150px;
     overflow: auto;
 }
 
