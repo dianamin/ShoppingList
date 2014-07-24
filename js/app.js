@@ -38,6 +38,7 @@ app.controller('Items', function($scope){
     $scope.actualItem = "";
     $scope.currentList = "Listă";
     $scope.lists = ["Listă"];
+    $scope.categories = ["Categorie", "Categorie2"];
     $scope.addProduct = function(newItem) {
         nr++;
         console.log($scope.currentList);
@@ -97,6 +98,14 @@ app.controller('Items', function($scope){
     $scope.filterFunction = function(item) {
         return item.list == $scope.currentList;
     };
+
+    $scope.names = [
+        "Diana",
+        "Alin",
+        "Razvan",
+        "Alex"
+    ];
+
 });
 app.directive("test", function() {
    return function (scope, element) {
