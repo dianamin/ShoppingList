@@ -19,7 +19,27 @@
 <h1 class = "page-header">Listă de cumpărături</h1>
 
 
-<div id = "right">
+<div>
+    <button class = "btn btn-danger" onclick = "scale('4', 120)"><span class = "glyphicon glyphicon-plus"></span> Listă nouă</button>
+
+    <div class = "scale" id = "4">
+        <form ng-submit = "addList(newList)">
+
+                <label>Numele listei</label> <br />
+                <input class = "form-control" type = "text" ng-model = "newList.name" style = "width: 150px;"/>
+                <br />
+                <input type = "submit" value = "Adaugă listă"/> <input type = "button" onclick = "scale(4)" value = "Anulează"/>
+        </form>
+    </div>
+
+    <button class = "btn btn-primary" onclick = "scale('5', 90)"><span class = "glyphicon glyphicon-th"></span> Alege o listă</button>
+    <div class = "scale" id = "5">
+        <br />
+        <label>Liste existente:</label>
+        <select ng-model = "currentList" ng-change = "changeList()" class = "form-control" style = "width: 150px;">
+            <option ng-repeat = "list in lists" value = "{{list}}">{{list}}</option>
+        </select>
+    </div>
 </div>
 
 
@@ -74,7 +94,7 @@
     <div style = 'background: url("img/b.png");' id = "bg">
         <ul id = "list">
 
-            <li ng-repeat="item in items | filter:query | orderBy:orderProp" style = "margin-top: 20px;" ng-class = "{'removed': item.removed}">
+            <li ng-repeat="item in items | filter:query | filter:filterFunction | orderBy:orderProp" ng-if = "item.list = currentList" style = "margin-top: 20px;" ng-class = "{'removed': item.removed}">
                 <div id = "options">
                     <button class = "btn btn-default" ng-click = "openEdit(item)"><span class = "glyphicon glyphicon-pencil"></span></button>
                     <button class = "btn btn-danger" ng-click = "remove(item)"><span class = "glyphicon glyphicon-remove"></span></button>

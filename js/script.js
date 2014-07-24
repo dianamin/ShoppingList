@@ -10,19 +10,15 @@ var add = function() {
         "product" : "test",
         "quantity" : "1"
     });
-    console.log(items);
 };
 
 var edit = function (id) {
-    console.log(id);
     document.getElementById(id).setAttribute("style", "height: 100px;")
 };
 
-var scaled = [1, 1, 1, 1, 1];
+var scaled = [1, 1, 1, 1, 1, 1];
 
 var scale = function (id, size) {
-    console.log(parseInt(id));
-    console.log(scaled[parseInt(id)]);
     if (scaled[parseInt(id)] == 1)
         document.getElementById(id).setAttribute("style", "height:" + size + "px;");
     else document.getElementById(id).setAttribute("style", "height: 0px;");

@@ -15,7 +15,8 @@ var items = [
         "quantity" : "2",
         "bought" : false,
         "removed" : false,
-        "details" : ":)"
+        "details" : ":)",
+        "list": "Listă"
     },
     {
         "nr" : "2",
@@ -24,7 +25,8 @@ var items = [
         "quantity" : "1",
         "bought" : false,
         "removed" : false,
-        "details": ":)"
+        "details": ":)",
+        "list" : "Listă"
     }
 ];
 
@@ -34,16 +36,22 @@ app.controller('Items', function($scope){
     $scope.editBox = "no";
     $scope.editItem = "";
     $scope.actualItem = "";
-
+    $scope.currentList = "Listă";
+    $scope.lists = ["Listă"];
     $scope.addProduct = function(newItem) {
         nr++;
+        console.log($scope.currentList);
         $scope.items.push({
             "nr" : String(nr),
             "product": newItem.product,
             "quantity": newItem.quantity,
-            "details": newItem.details
+            "details": newItem.details,
+            "list": $scope.currentList
         })
     };
+    $scope.addList = function (newList) {
+        $scope.lists.push(newList.name);
+    }
     $scope.buy = function(item) {
         item.bought = !item.bought;
     };
@@ -67,7 +75,6 @@ app.controller('Items', function($scope){
         $scope.editBox = false;
         $scope.actualItem = "";
     };
-
     $scope.edit = function(item) {
         item.product = item.newName;
         item.quantity = item.newQ;
@@ -77,7 +84,7 @@ app.controller('Items', function($scope){
     };
     $scope.refresh = function() {
         for (var i = 0; i < $scope.items.length; i++) {
-            if ($scope.items[i].bought == true) {
+            if ($scope.items[i].bought == true && $scope.items[i].list == $scope.currentList) {
                 console.log(i);
                 $scope.items.splice(i, 1);
                 i--;
@@ -85,6 +92,11 @@ app.controller('Items', function($scope){
         }
     };
     $scope.orderProp = 'nr';
+
+
+    $scope.filterFunction = function(item) {
+        return item.list == $scope.currentList;
+    };
 });
 app.directive("test", function() {
    return function (scope, element) {
