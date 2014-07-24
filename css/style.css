@@ -1,11 +1,17 @@
 #bg {
     width: 400px;
     height: 640px;
-    padding-top: 100px;
+    padding-top: 55px;
+}
+
+u {
+    color: #357ebd;
+    font-size: 35px;
+    text-align: justify;
 }
 
 #list {
-    height: 540px;
+    height: 490px;
     overflow: auto;
     font-family: "lucida sans unicode";
     color: #357ebd;
